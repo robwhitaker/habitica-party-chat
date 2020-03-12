@@ -1,0 +1,38 @@
+cabal-version:       >=1.10
+
+name:                habitica-party-chat
+version:             0.1.0.0
+synopsis:            Backend for real-time Habitica party chat.
+license:             GPL-3
+license-file:        LICENSE
+author:              Rob Whitaker
+maintainer:          dev@robwhitaker.com
+copyright:           (c) 2020 Rob Whitaker
+category:            Chat
+build-type:          Simple
+extra-source-files:  CHANGELOG.md
+
+executable habitica-party-chat
+  main-is:             Main.hs
+  ghc-options:         -Wall
+                       -Werror
+                       -fwarn-incomplete-uni-patterns
+                       -fwarn-tabs
+                       -fwarn-incomplete-record-updates
+                       -fno-warn-missing-signatures
+                       -fno-warn-type-defaults
+                       -Wwarn=unused-imports
+                       -Wwarn=unused-local-binds
+                       -Wwarn=unused-matches
+                       -Wwarn=unused-do-bind
+                       -Wwarn=unused-top-binds
+  default-extensions:  OverloadedStrings
+                     , NoImplicitPrelude
+  build-depends:       base >=4.12 && <4.13
+                     , protolude
+                     , scotty
+                     , wai
+                     , wai-websockets
+                     , warp
+  hs-source-dirs:      server
+  default-language:    Haskell2010
