@@ -21,6 +21,7 @@ executable habitica-party-chat
                        -fwarn-incomplete-record-updates
                        -fno-warn-missing-signatures
                        -fno-warn-type-defaults
+                       -Wwarn=deprecations
                        -Wwarn=unused-imports
                        -Wwarn=unused-local-binds
                        -Wwarn=unused-matches
@@ -28,11 +29,20 @@ executable habitica-party-chat
                        -Wwarn=unused-top-binds
   default-extensions:  OverloadedStrings
                      , NoImplicitPrelude
-  build-depends:       base >=4.12 && <4.13
-                     , protolude
-                     , scotty
-                     , wai
-                     , wai-websockets
-                     , warp
+                     , ScopedTypeVariables
+  build-depends:       aeson                             >= 1.4.6 && < 1.5
+                     , base                              >= 4.13.0 && < 4.14
+                     , containers                        >= 0.6.2 && < 0.7
+                     , http-types                        >= 0.12.3 && < 0.13
+                     , protolude                         >= 0.2.4 && < 0.3
+                     , req                               >= 3.1.0 && < 3.2
+                     , scotty                            >= 0.11.5 && < 0.12
+                     , text                              >= 1.2.4 && < 1.3
+                     , uuid                              >= 1.3.13 && < 1.4
+                     , wai                               >= 3.2.2 && < 3.3
+                     , wai-websockets                    >= 3.0.1 && < 3.1
+                     , warp                              >= 3.3.9 && < 3.4
+                     , websockets                        >= 0.12.7 && < 0.13
+                     , yaml                              >= 0.11.2 && < 0.12
   hs-source-dirs:      server
   default-language:    Haskell2010
