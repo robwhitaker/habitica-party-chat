@@ -8,10 +8,14 @@ in
   pkgs.lib.overrideDerivation haskellStuff.env (old: {
     name = "habitica-party-chat";
     buildInputs = old.buildInputs ++ [
+      # Haskell
       pkgs.haskellPackages.cabal-install
       pkgs.haskellPackages.ghcid
       pkgs.haskellPackages.stylish-haskell
       pkgs.haskellPackages.hlint
+
+      # PureScript
+      pkgs.nodePackages.parcel-bundler
       pkgs.spago
     ];
   })

@@ -1,6 +1,7 @@
 .config.yaml
 
 build/
+.cache/
 
 cabal.project.local*
 dist/

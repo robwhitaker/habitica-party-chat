@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [ ! -f ./build/compiled/index.js ]; then
+    spago bundle-app -t ./build/compiled/index.js
+fi
+cabal run habitica-party-chat &
+parcel watch -d ./build ./client/index.html &
+spago bundle-app -w -t ./build/compiled/index.js

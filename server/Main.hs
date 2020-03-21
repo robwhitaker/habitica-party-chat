@@ -17,6 +17,7 @@ import qualified Network.HTTP.Types             as Http
 import qualified Network.Wai                    as Wai
 import qualified Network.Wai.Handler.Warp       as Warp
 import qualified Network.Wai.Handler.WebSockets as WS
+import qualified Network.Wai.Middleware.Static  as Static
 import qualified Network.WebSockets             as WS
 
 import qualified Web.Scotty                     as Scotty
@@ -26,7 +27,8 @@ type ClientId = UUID
 data Auth = Auth
     { authHabiticaId     :: ClientId
     , authHabiticaApiKey :: UUID
-    } deriving (Generic)
+    }
+    deriving (Generic)
 
 instance FromJSON Auth
 
@@ -71,7 +73,8 @@ instance FromJSON InboundMessage where
 data OutboundMessage = OutboundMessage
     { outMsgSender :: ClientId
     , outMsgText   :: Text
-    } deriving (Generic)
+    }
+    deriving (Generic)
 
 instance ToJSON OutboundMessage
 
@@ -89,6 +92,8 @@ main = do
 
 scottyApp :: MVar State -> Config -> IO Wai.Application
 scottyApp stateRef config = Scotty.scottyApp $ do
+    Scotty.middleware $ Static.staticPolicy (Static.addBase "./build")
+
     Scotty.get "/" $ do
         Scotty.setHeader "Content-Type" "text/html; charset=utf-8"
         Scotty.file "build/index.html"
